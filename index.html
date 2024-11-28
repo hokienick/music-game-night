@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Game Night</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div class="container">
         <!-- Login Button -->
-        <button class="login-button" onclick="window.location.href='/admin/login.html'">Login</button>
+        <button class="login-button" onclick="navigateToLogin()">Login</button>
 
         <!-- Center Content -->
         <div class="content">
@@ -19,5 +19,14 @@
             <input type="text" class="room-code-input" placeholder="----">
         </div>
     </div>
+
+    <script>
+        function navigateToLogin() {
+            // Dynamically detect local or productio
+            const isLocal = location.origin === "file://" || location.hostname === "localhost";
+            const loginPath = isLocal ? "./admin/login.html" : "/admin/login.html";
+            window.location.href = loginPath;
+        }
+    </script>
 </body>
 </html>
