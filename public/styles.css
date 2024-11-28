@@ -36,7 +36,8 @@ body {
 }
 
 .logo {
-    max-width: 200px; /* Constrain the logo size */
+    max-width: 200px; /* Ensure a maximum size */
+    height: auto; /* Maintain aspect ratio */
     margin: 0 auto -22px;
     display: block;
 }
@@ -133,12 +134,6 @@ body {
     background: linear-gradient(to bottom, #0B0D33, #000000); /* Matches homepage background */
     color: white;
     text-align: center;
-}
-
-.logo {
-    max-width: 200px; /* Keep the same size as the homepage logo */
-    margin: 0 auto -22px;
-    display: block;
 }
 
 .title {

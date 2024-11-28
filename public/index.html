@@ -9,24 +9,15 @@
 <body>
     <div class="container">
         <!-- Login Button -->
-        <button class="login-button" onclick="navigateToLogin()">Login</button>
+        <button class="login-button" onclick="window.location.href='/admin/login.html'">Login</button>
 
         <!-- Center Content -->
         <div class="content">
-            <img src="./djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="logo">
+            <img class="logo" src="./djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo">
             <h1 class="title">MUSIC GAME NIGHT</h1>
             <p class="subtitle">Enter Room Code:</p>
             <input type="text" class="room-code-input" placeholder="----">
         </div>
     </div>
-
-    <script>
-        function navigateToLogin() {
-            // Dynamically detect local or productio
-            const isLocal = location.origin === "file://" || location.hostname === "localhost";
-            const loginPath = isLocal ? "./admin/login.html" : "/admin/login.html";
-            window.location.href = loginPath;
-        }
-    </script>
 </body>
 </html>
