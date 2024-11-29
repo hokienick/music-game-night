@@ -1,16 +1,18 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: './public', // Set public as the root directory
-  build: {
-    outDir: '../dist', // Output built files into the dist folder outside public
-    rollupOptions: {
-      input: {
-        main: './public/index.html', // Explicitly specify entry point
-      },
+    root: './',
+    publicDir: 'public',
+    build: {
+        outDir: 'dist',
+        rollupOptions: {
+            input: {
+                main: './public/index.html',
+                login: './public/login.html',
+            },
+        },
     },
-  },
-  server: {
-    open: true, // Automatically opens the app in the browser
-  },
+    optimizeDeps: {
+        include: ['firebase/app', 'firebase/auth'], // Ensure Firebase modules are included
+    },
 });
