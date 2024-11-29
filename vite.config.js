@@ -3,7 +3,7 @@ export default {
     build: {
         outDir: '../dist',
         rollupOptions: {
-            input: {
+            input: { 
                 main: './public/index.html',
                 login: './public/admin/login.html',
             },
