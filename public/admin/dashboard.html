@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <div class="dashboard-container">
+    <header class="admin-header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
+        <button id="hamburger-menu" class="hamburger-button">
+            ☰
+        </button>
+    </header>
+
+    <nav id="menu-dropdown" class="menu-dropdown hidden">
+        <ul>
+            <li><a href="/admin/admin-settings.html">Settings</a></li>
+            <li><a href="/admin/invite-host.html">Invite Host</a></li>
+            <li><a href="#" id="logout-button">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Add your dashboard content here -->
         <h1>Welcome to the Admin Dashboard</h1>
-        <!-- Add admin controls here -->
-    </div>
+    </main>
+
+    <script src="/admin/dashboard.js" type="module"></script>
 </body>
 </html>

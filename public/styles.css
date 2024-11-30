@@ -195,3 +195,81 @@ body {
     margin-top: 10px;
     text-align: center;
 }
+
+/* Admin Header Styles */
+.admin-header {
+    display: flex;
+    justify-content: space-between; /* Space out the logo and hamburger menu */
+    align-items: center; /* Vertically center the items */
+    background: linear-gradient(to bottom, #0B0D33, #000000); /* Matches dark theme */
+    color: white;
+    padding: 10px 20px; /* Adjust padding as needed */
+    height: 60px; /* Set consistent height */
+    width: 100%; /* Make the header span the full width of the page */
+    position: fixed; /* Stick the header to the top */
+    top: 0;
+    z-index: 1000; /* Keep the header above other elements */
+}
+
+/* Logo Style */
+.admin-logo {
+    max-height: 50px; /* Ensure logo scales properly */
+    width: auto;
+    margin-left: 40px;
+}
+
+/* Hamburger Menu Button Style */
+.hamburger-button {
+    background: none;
+    border: none;
+    font-size: 24px; /* Size of the hamburger icon */
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-right:40px;
+}
+
+.hamburger-button:hover {
+    transform: scale(1.1); /* Subtle hover effect */
+}
+
+
+/* Dropdown Menu */
+.menu-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #0B0D33;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 10px 0;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.menu-dropdown.hidden {
+    display: none;
+}
+
+.menu-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-dropdown ul li {
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.menu-dropdown ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-dropdown ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
