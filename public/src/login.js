@@ -34,11 +34,36 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Login successful:", userCredential.user);
 
         // Redirect to the dashboard
-        window.location.href = "/dashboard.html";
+        window.location.href = "/admin/dashboard.html";
       })
       .catch((error) => {
+
+        // Map Firebase error codes to user-friendly messages
+        let userFriendlyMessage;
+        switch (error.code) {
+          case "auth/invalid-email":
+            userFriendlyMessage = "Invalid email address. Please check and try again.";
+            break;
+          case "auth/user-not-found":
+            userFriendlyMessage = "No user found with this email. Please sign up or try a different email.";
+            break;
+          case "auth/wrong-password":
+            userFriendlyMessage = "Incorrect password. Please try again.";
+            break;
+          case "auth/too-many-requests":
+            userFriendlyMessage = "Too many failed attempts. Please try again later.";
+            break;
+          case "auth/invalid-credential":
+            userFriendlyMessage =
+              "Invalid credential detected.";
+            break;
+          default:
+            userFriendlyMessage = "An unexpected error occurred. Please try again.";
+            break;
+        }
+
         // Display error message
-        errorMessage.textContent = `Error: ${error.message}`;
+        errorMessage.textContent = userFriendlyMessage;
         errorMessage.style.display = "block";
         console.error("Login failed:", error);
       });

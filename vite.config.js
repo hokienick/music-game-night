@@ -1,18 +1,19 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    root: './',
-    publicDir: 'public',
+    root: './public', // Root directory for development
     build: {
-        outDir: 'dist',
+        outDir: '../dist', // Output directory for production build
+        emptyOutDir: true, // Clear the dist folder before building
         rollupOptions: {
             input: {
-                main: './public/index.html',
-                login: './public/login.html',
+                main: '/index.html', // Main entry point
+                login: '/login.html', // Login page entry point
+                dashboard: './public/admin/dashboard.html'
             },
         },
     },
-    optimizeDeps: {
-        include: ['firebase/app', 'firebase/auth'], // Ensure Firebase modules are included
+    server: {
+        open: true, // Automatically opens the browser on `npx vite`
     },
 });
