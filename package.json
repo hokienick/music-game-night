@@ -1,4 +1,11 @@
 {
+  "name": "music-trivia",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",        
+    "build": "vite build",
+    "serve": "vite preview"
+  },
   "dependencies": {
     "firebase": "^11.0.2"
   },

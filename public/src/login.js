@@ -27,7 +27,7 @@ loginForm.addEventListener("submit", (e) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("User logged in:", userCredential.user);
-            window.location.href = "/admin/dashboard.html";
+            window.location.href = "../admin/dashboard.html";
         })
         .catch((error) => {
             console.error("Error logging in:", error.message);
