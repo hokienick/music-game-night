@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             console.log("User not authenticated. Redirecting to login page...");
-            window.location.href = "/admin/login.html"; // Redirect to login
+            window.location.href = "/login.html"; // Redirect to login
         } else {
             console.log(`User authenticated: ${user.email}`);
         }
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         auth.signOut()
             .then(() => {
                 console.log("Logout successful. Redirecting to login page...");
-                window.location.href = "/admin/login.html"; // Redirect to login after logout
+                window.location.href = "/login.html"; // Redirect to login after logout
             })
             .catch((error) => {
                 console.error("Logout failed:", error);
