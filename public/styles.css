@@ -46,6 +46,7 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px;
     margin: 0 0 40px;
+    text-align: center;
 }
 
 .subtitle {
@@ -55,7 +56,7 @@ body {
 
 .room-code-input {
     width: 75%;
-    height:50px;
+    height: 50px;
     padding: 10px;
     font-size: 18px;
     border-radius: 8px;
@@ -72,15 +73,11 @@ body {
 }
 
 /* Login Page Styling */
-.login-container {
+.login-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #0B0D33, #000000);
-    color: white;
-    text-align: center;
+    gap: 20px; /* Add space between form elements */
 }
 
 .login-title {
@@ -91,28 +88,28 @@ body {
 
 .login-input {
     width: 80%;
-    max-width: 300px;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 18px;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 16px;
     border-radius: 8px;
     border: none;
     outline: none;
-    text-align: center;
+    text-align: left;
+    background: #FFFFFF;
+    color: #000000;
 }
 
-.login-button {
-    position: fixed; /* Ensures it stays in the top-right corner */
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: 1px solid white;
+.login-submit {
+    width: 80%; /* Match input width */
+    max-width: 400px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #00f5d4;
     color: white;
-    border-radius: 12px;
-    padding: 5px 15px; /* Small and discreet */
-    font-size: 14px; /* Compact text */
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: box-shadow 0.3s ease;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .login-button:hover {
@@ -122,78 +119,6 @@ body {
 .error-message {
     color: red;
     margin-top: 15px;
-}
-
-/* Login Page Styling */
-.login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #0B0D33, #000000); /* Matches homepage background */
-    color: white;
-    text-align: center;
-}
-
-.title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    margin: 0 0 20px;
-}
-
-.login-form {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.login-input {
-    width: 80%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    text-align: center;
-    outline: none;
-    background: #FFFFFF;
-    color: #000000;
-}
-
-.login-input::placeholder {
-    color: gray;
-    font-size: 16px;
-}
-
-.login-input + .login-input {
-    margin-top: -10px; /* Reduce spacing between the textboxes */
-}
-
-.login-submit {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: none;
-    border: 1px solid white;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.login-submit:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
-}
-
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
 }
 
 /* Admin Header Styles */
@@ -218,6 +143,12 @@ body {
     margin-left: 40px;
 }
 
+/* Validation message Invite Host */
+.host-message {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
 /* Hamburger Menu Button Style */
 .hamburger-button {
     background: none;
@@ -226,13 +157,12 @@ body {
     color: white;
     cursor: pointer;
     transition: transform 0.2s;
-    margin-right:40px;
+    margin-right: 40px;
 }
 
 .hamburger-button:hover {
     transform: scale(1.1); /* Subtle hover effect */
 }
-
 
 /* Dropdown Menu */
 .menu-dropdown {
@@ -272,4 +202,35 @@ body {
     text-decoration: none;
     color: white;
     display: block;
+}
+
+/* Table Styles */
+.table-container {
+    margin: 0 auto; /* Center the table horizontally */
+    width: 90%; /* Take up 90% of the viewport width */
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 0; /* Add padding for a cleaner look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.games-table {
+    width: 100%; /* Ensure the table stretches the full container width */
+    border-collapse: collapse;
+    color: white;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.games-table th,
+.games-table td {
+    padding: 15px; /* Add padding for readability */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.games-table th {
+    background-color: rgba(255, 255, 255, 0.15);
+    font-weight: bold;
+    text-transform: uppercase;
 }

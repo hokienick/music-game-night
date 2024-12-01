@@ -9,7 +9,11 @@ export default defineConfig({
             input: {
                 main: '/index.html', // Main entry point
                 login: '/login.html', // Login page entry point
-                dashboard: './public/admin/dashboard.html'
+                dashboard: '/admin/dashboard.html', // Dashboard page entry point
+                signup: '/signup.html', // Sign up page entry point
+                adminSettings: '/admin/admin-settings.html', // Admin Settings page entry point
+                inviteHost: '/admin/invite-host.html',
+                hostDashboard: '/host/host-dashboard.html',
             },
         },
     },

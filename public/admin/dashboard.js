@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.getElementById("hamburger-menu");
     const menuDropdown = document.getElementById("menu-dropdown");
     const logoutButton = document.getElementById("logout-button");
+    const toggleCompleted = document.getElementById("toggle-completed");
+    const tableRows = document.querySelectorAll(".games-table tbody tr");
 
     // Check if the user is authenticated
     onAuthStateChanged(auth, (user) => {
@@ -55,5 +57,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Logout failed:", error);
                 alert("An error occurred while logging out. Please try again.");
             });
+    });
+
+    // Show/Hide completed rows
+    toggleCompleted.addEventListener("change", (e) => {
+        const hideCompleted = e.target.checked;
+
+        tableRows.forEach((row) => {
+            const completedCheckbox = row.querySelector(".completed-checkbox");
+
+            if (completedCheckbox.checked) {
+                row.style.display = hideCompleted ? "none" : "";
+            }
+        });
+    });
+
+    // Add an event listener to each "Completed" checkbox
+    tableRows.forEach((row) => {
+        const completedCheckbox = row.querySelector(".completed-checkbox");
+
+        completedCheckbox.addEventListener("change", () => {
+            if (toggleCompleted.checked && completedCheckbox.checked) {
+                // If "Show/Hide Completed" is checked and the row's checkbox is marked as completed, hide the row
+                row.style.display = "none";
+            } else {
+                // Otherwise, ensure the row is displayed
+                row.style.display = "";
+            }
+        });
     });
 });

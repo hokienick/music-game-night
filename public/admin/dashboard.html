@@ -23,8 +23,62 @@
     </nav>
 
     <main>
-        <!-- Add your dashboard content here -->
+        <!-- Dashboard Header -->
         <h1>Welcome to the Admin Dashboard</h1>
+
+        <!-- Table Header Controls -->
+        <div class="table-controls">
+            <label for="toggle-completed" class="toggle-label">
+                <input type="checkbox" id="toggle-completed">
+                Hide Completed
+            </label>
+            <button id="create-game" class="btn-create-game">+ Create Game</button>
+        </div>
+
+        <!-- Games Table -->
+        <div class="table-container">
+            <table class="games-table">
+                <thead>
+                    <tr>
+                        <th>Scheduled Date</th>
+                        <th>Location</th>
+                        <th>Room Code</th>
+                        <th>Host Assigned</th>
+                        <th>Download Game</th>
+                        <th>Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td>12/01/2024</td>
+                        <td>Original 40</td>
+                        <td>ABCD</td>
+                        <td>host123</td>
+                        <td><a href="/games/game1.zip" download>📥</a></td>
+                        <td><input type="checkbox" class="completed-checkbox"></td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td>12/03/2024</td>
+                        <td>Mission Brewing</td>
+                        <td>WXYZ</td>
+                        <td>host456</td>
+                        <td><a href="/games/game2.zip" download>📥</a></td>
+                        <td><input type="checkbox" class="completed-checkbox" checked></td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td>12/05/2024</td>
+                        <td>UCSD Mission Brewing</td>
+                        <td>1234</td>
+                        <td>host789</td>
+                        <td><a href="/games/game3.zip" download>📥</a></td>
+                        <td><input type="checkbox" class="completed-checkbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 
     <script src="/admin/dashboard.js" type="module"></script>

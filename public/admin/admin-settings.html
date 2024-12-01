@@ -4,22 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Settings</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0B0D33;
-            color: white;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            font-size: 2em;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Admin Settings</h1>
-    <p>This is a placeholder page for admin settings.</p>
-    <a href="/admin/dashboard.html" style="color: white; text-decoration: underline;">Go Back to Dashboard</a>
+    <header class="admin-header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
+        <button id="hamburger-menu" class="hamburger-button">
+            ☰
+        </button>
+    </header>
+
+    <nav id="menu-dropdown" class="menu-dropdown hidden">
+        <ul>
+            <li><a href="/admin/dashboard.html">Dashboard</a></li>
+            <li><a href="/admin/invite-host.html">Invite Host</a></li>
+            <li><a href="#" id="logout-button">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Manage Locations Section -->
+        <div class="settings-container">
+            <h2>Manage Locations</h2>
+            <div class="location-input">
+                <input type="text" id="location-input" placeholder="Enter location name">
+                <button id="add-location" class="btn-add-location">+</button>
+            </div>
+            <div class="table-container">
+                <table id="locations-table" class="locations-table">
+                    <thead>
+                        <tr>
+                            <th>Location Name</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Invite Host Section -->
+        <div class="settings-container">
+            <h2>Invite Host</h2>
+            <div class="host-invite-container">
+                <input type="email" id="host-email" placeholder="Enter host email">
+                <button id="invite-host">Invite Host</button>
+                <p id="host-message" class="host-message"></p>
+            </div>
+            <div class="table-container">
+                <table id="hosts-table" class="locations-table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Revoke</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="/admin/admin-settings.js" type="module"></script>
 </body>
 </html>
