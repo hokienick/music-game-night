@@ -57,7 +57,6 @@ exports.inviteHost = functions.https.onRequest(async (req, res) => {
     });
 
     console.log("Host invitation stored successfully in Firestore");
-    console.log("Host invitation stored successfully in Firestore");
     res.status(200).send({
       data: { message: "Host invitation sent successfully" },
     });
