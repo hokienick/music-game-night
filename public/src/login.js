@@ -1,6 +1,7 @@
 // Import Firebase modules (make sure these match the Firebase version you're using)
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 // Firebase configuration object
 const firebaseConfig = {
@@ -15,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 // Add an event listener to the login form
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,14 +32,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Attempt to sign in with Firebase
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         console.log("Login successful:", userCredential.user);
 
-        // Redirect to the dashboard
-        window.location.href = "/admin/dashboard.html";
+        const user = userCredential.user;
+
+        try {
+          // Retrieve the user's role from Firestore
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+
+          if (!userDoc.exists()) {
+            console.error("Throwing userDoc Error");
+            throw new Error("User role not found in the database.");
+          }
+          const userData = userDoc.data();
+          const role = userData.role;
+
+          // Redirect based on role
+          if (role === "admin") {
+            window.location.href = "/admin/dashboard.html";
+          } else if (role === "host") {
+            window.location.href = "/host/host-dashboard.html";
+          } else {
+            throw new Error("Invalid role specified.");
+          }
+        } catch (roleError) {
+          console.error("Role retrieval error:", roleError);
+          errorMessage.textContent = "An error occurred while determining your role. Please try again later.";
+          errorMessage.style.display = "block";
+        }
       })
       .catch((error) => {
-
         // Map Firebase error codes to user-friendly messages
         let userFriendlyMessage;
         switch (error.code) {
@@ -54,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             userFriendlyMessage = "Too many failed attempts. Please try again later.";
             break;
           case "auth/invalid-credential":
-            userFriendlyMessage =
-              "Invalid credential detected.";
+            userFriendlyMessage = "Invalid credential detected.";
             break;
           default:
             userFriendlyMessage = "An unexpected error occurred. Please try again.";

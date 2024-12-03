@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Game</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="admin-header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
+        <button id="hamburger-menu" class="hamburger-button">☰</button>
+    </header>
+
+    <nav id="menu-dropdown" class="menu-dropdown hidden">
+        <ul>
+            <li><a href="/admin/admin-settings.html">Settings</a></li>
+            <li><a href="/admin/invite-host.html">Invite Host</a></li>
+            <li><a href="/admin/dashboard.html">Dashboard</a></li>
+            <li><a href="#" id="logout-button">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Create Game</h1>
+
+        <!-- Section 1: Date of Event -->
+        <section>
+            <h2>Date of Event</h2>
+            <p id="selected-date">Selected Date: None</p>
+            <input type="date" id="event-date" />
+        </section>
+
+        <!-- Section 2: Location -->
+        <section>
+            <h2>Location</h2>
+            <select id="location-dropdown">
+                <option value="" disabled selected>Select a location</option>
+            </select>
+        </section>
+
+        <!-- Section 3: Upload Music Files -->
+        <section>
+            <h2>Upload Music Files</h2>
+            <p>Paste the Google Drive URL of your ZIP file:</p>
+            <input type="url" id="music-url" placeholder="Paste Google Drive link here" />
+            <p id="upload-error-message" class="error-message" style="display: none;">Invalid Google Drive URL. Please try again.</p>
+        </section>
+
+        <!-- Section 4: Assign Host -->
+        <section>
+            <h2>Assign Host</h2>
+            <select id="host-dropdown">
+                <option value="" disabled selected>Select a host</option>
+            </select>
+        </section>
+
+        <!-- Section 5: Final Round Words -->
+        <section>
+            <h2>Final Round Words</h2>
+            <div id="final-round">
+                Q1: <input type="number" id="q1" /> 
+                Q2: <input type="number" id="q2" /> 
+                Q3: <input type="number" id="q3" /> 
+                Q4: <input type="number" id="q4" /> 
+                Q5: <input type="number" id="q5" />
+            </div>
+        </section>
+
+        <!-- Submit Button -->
+        <button id="submit-game">Submit</button>
+        <p id="error-message" class="error-message" style="display: none;">An error occurred while saving the game.</p>
+    </main>
+
+    <script src="/admin/create-game.js" type="module"></script>
+</body>
+</html>

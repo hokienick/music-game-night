@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <header class="admin-header">
-        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
+    <header class="header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="header-logo">
         <button id="hamburger-menu" class="hamburger-button">
             ☰
         </button>
@@ -17,7 +17,6 @@
     <nav id="menu-dropdown" class="menu-dropdown hidden">
         <ul>
             <li><a href="/admin/admin-settings.html">Settings</a></li>
-            <li><a href="/admin/invite-host.html">Invite Host</a></li>
             <li><a href="#" id="logout-button">Logout</a></li>
         </ul>
     </nav>
@@ -26,17 +25,17 @@
         <!-- Dashboard Header -->
         <h1>Welcome to the Admin Dashboard</h1>
 
-        <!-- Table Header Controls -->
-        <div class="table-controls">
-            <label for="toggle-completed" class="toggle-label">
-                <input type="checkbox" id="toggle-completed">
-                Hide Completed
-            </label>
-            <button id="create-game" class="btn-create-game">+ Create Game</button>
-        </div>
-
-        <!-- Games Table -->
         <div class="table-container">
+            <!-- Table Header Controls -->
+            <div class="table-controls">
+                <label for="toggle-completed" class="toggle-label">
+                    <input type="checkbox" id="toggle-completed">
+                    Hide Completed
+                </label>
+                <button id="create-game" class="btn-create-game">+ Create Game</button>
+            </div>
+        
+            <!-- Games Table -->
             <table class="games-table">
                 <thead>
                     <tr>
@@ -49,33 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
-                    <tr>
-                        <td>12/01/2024</td>
-                        <td>Original 40</td>
-                        <td>ABCD</td>
-                        <td>host123</td>
-                        <td><a href="/games/game1.zip" download>📥</a></td>
-                        <td><input type="checkbox" class="completed-checkbox"></td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr>
-                        <td>12/03/2024</td>
-                        <td>Mission Brewing</td>
-                        <td>WXYZ</td>
-                        <td>host456</td>
-                        <td><a href="/games/game2.zip" download>📥</a></td>
-                        <td><input type="checkbox" class="completed-checkbox" checked></td>
-                    </tr>
-                    <!-- Row 3 -->
-                    <tr>
-                        <td>12/05/2024</td>
-                        <td>UCSD Mission Brewing</td>
-                        <td>1234</td>
-                        <td>host789</td>
-                        <td><a href="/games/game3.zip" download>📥</a></td>
-                        <td><input type="checkbox" class="completed-checkbox"></td>
-                    </tr>
+                    <!-- Table rows will be dynamically populated -->
                 </tbody>
             </table>
         </div>

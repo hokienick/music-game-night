@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -14,21 +15,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.getElementById("hamburger-menu");
     const menuDropdown = document.getElementById("menu-dropdown");
     const logoutButton = document.getElementById("logout-button");
     const toggleCompleted = document.getElementById("toggle-completed");
-    const tableRows = document.querySelectorAll(".games-table tbody tr");
+    const tableBody = document.querySelector(".games-table tbody");
+    const createGameButton = document.getElementById("create-game");
 
     // Check if the user is authenticated
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (!user) {
             console.log("User not authenticated. Redirecting to login page...");
             window.location.href = "/login.html"; // Redirect to login
         } else {
             console.log(`User authenticated: ${user.email}`);
+            await loadGames(); // Load games dynamically from Firestore
         }
     });
 
@@ -63,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleCompleted.addEventListener("change", (e) => {
         const hideCompleted = e.target.checked;
 
-        tableRows.forEach((row) => {
+        Array.from(tableBody.rows).forEach((row) => {
             const completedCheckbox = row.querySelector(".completed-checkbox");
 
             if (completedCheckbox.checked) {
@@ -72,18 +76,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Add an event listener to each "Completed" checkbox
-    tableRows.forEach((row) => {
-        const completedCheckbox = row.querySelector(".completed-checkbox");
+    // Redirect to Create Game page when the button is clicked
+    createGameButton.addEventListener("click", () => {
+        console.log("Navigating to Create Game page...");
+        window.location.href = "/admin/create-game.html";
+    });
 
+    // Load games from Firestore and populate the table
+    async function loadGames() {
+        try {
+            const gamesSnapshot = await getDocs(collection(db, "games"));
+            gamesSnapshot.forEach((doc) => {
+                const game = doc.data();
+                addGameToTable(game, doc.id);
+            });
+        } catch (error) {
+            console.error("Error loading games:", error);
+        }
+    }
+
+    // Add a game to the table
+    function addGameToTable(game, gameId) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${game.date}</td>
+            <td>${game.location}</td>
+            <td>${game.roomCode}</td>
+            <td>${game.host}</td>
+            <td><a href="${game.musicFileURL}" download target="_blank">📥</a></td>
+            <td><input type="checkbox" class="completed-checkbox"></td>
+        `;
+
+        // Add event listener for the "Completed" checkbox
+        const completedCheckbox = row.querySelector(".completed-checkbox");
         completedCheckbox.addEventListener("change", () => {
             if (toggleCompleted.checked && completedCheckbox.checked) {
-                // If "Show/Hide Completed" is checked and the row's checkbox is marked as completed, hide the row
-                row.style.display = "none";
+                row.style.display = "none"; // Hide row if "Hide Completed" is checked
             } else {
-                // Otherwise, ensure the row is displayed
-                row.style.display = "";
+                row.style.display = ""; // Show row otherwise
             }
         });
-    });
+
+        tableBody.appendChild(row);
+    }
 });

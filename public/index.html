@@ -6,7 +6,7 @@
     <title>Music Game Night</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body class="center-page">
     <div class="container">
         <!-- Login Button -->
         <button class="login-button" onclick="window.location.href='/login.html'">Login</button>
@@ -16,8 +16,17 @@
             <img class="logo" src="./djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo">
             <h1 class="title">MUSIC GAME NIGHT</h1>
             <p class="subtitle">Enter Room Code:</p>
-            <input type="text" class="room-code-input" placeholder="----">
+            <input
+                type="text"
+                class="room-code-input"
+                placeholder="----"
+                maxlength="4"
+            />
+            <!-- New Enter Button -->
+            <button class="enter-button">Enter</button>
         </div>
     </div>
+    <!-- Include the script for page behavior -->
+    <script src="/index.js" type="module"></script>
 </body>
 </html>

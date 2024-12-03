@@ -7,23 +7,35 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <header class="admin-header">
-        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
-        <button id="hamburger-menu" class="hamburger-button">☰</button>
+    <!-- Header Section -->
+    <header class="header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="header-logo">
+        <button id="logout-button" class="logout-button">Logout</button>
     </header>
 
+    <!-- Main Content -->
     <main>
-        <div class="dashboard-container">
-            <h1>Welcome to the Host Dashboard!</h1>
-            <p>More features coming soon...</p>
+        <!-- Dashboard Header -->
+        <h1 class="dashboard-title">Host Dashboard</h1>
+
+        <!-- Games Table -->
+        <div class="table-container">
+            <table class="games-table">
+                <thead>
+                    <tr>
+                        <th>Scheduled Date</th>
+                        <th>Location</th>
+                        <th>Room Code</th>
+                        <th>Download Game</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be populated dynamically -->
+                </tbody>
+            </table>
         </div>
     </main>
 
-    <script>
-        // Placeholder script for further Host Dashboard functionalities
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("Host Dashboard loaded successfully.");
-        });
-    </script>
+    <script src="/host/host-dashboard.js" type="module"></script>
 </body>
 </html>

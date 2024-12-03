@@ -108,11 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${name}</td>
-            <td><button class="btn-remove-location" data-id="${id}">-</button></td>
+            <td><button class="btn-remove" data-id="${id}">-</button></td>
         `;
         locationsTableBody.appendChild(row);
 
-        row.querySelector(".btn-remove-location").addEventListener("click", async (e) => {
+        row.querySelector(".btn-remove").addEventListener("click", async (e) => {
             const locationId = e.target.dataset.id;
             try {
                 await deleteDoc(doc(db, "locations", locationId));
@@ -179,11 +179,11 @@ inviteHostButton.addEventListener("click", async () => {
         row.innerHTML = `
             <td>${email}</td>
             <td>${status}</td>
-            <td><button class="btn-revoke-host" data-email="${email}">-</button></td>
+            <td><button class="btn-remove" data-email="${email}">-</button></td>
         `;
         hostsTableBody.appendChild(row);
 
-        row.querySelector(".btn-revoke-host").addEventListener("click", async (e) => {
+        row.querySelector(".btn-remove").addEventListener("click", async (e) => {
             const hostEmail = e.target.dataset.email;
             try {
                 if (status === "Pending") {

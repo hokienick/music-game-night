@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <header class="admin-header">
-        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
+    <header class="header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="header-logo">
         <button id="hamburger-menu" class="hamburger-button">
             ☰
         </button>
@@ -17,7 +17,6 @@
     <nav id="menu-dropdown" class="menu-dropdown hidden">
         <ul>
             <li><a href="/admin/dashboard.html">Dashboard</a></li>
-            <li><a href="/admin/invite-host.html">Invite Host</a></li>
             <li><a href="#" id="logout-button">Logout</a></li>
         </ul>
     </nav>
@@ -25,13 +24,13 @@
     <main>
         <!-- Manage Locations Section -->
         <div class="settings-container">
-            <h2>Manage Locations</h2>
+            <h2 class="settings-title">Manage Locations</h2>
             <div class="location-input">
-                <input type="text" id="location-input" placeholder="Enter location name">
-                <button id="add-location" class="btn-add-location">+</button>
+                <input type="text" id="location-input" class="input-field" placeholder="Enter location name">
+                <button id="add-location" class="btn-add">+</button>
             </div>
             <div class="table-container">
-                <table id="locations-table" class="locations-table">
+                <table id="locations-table" class="styled-table">
                     <thead>
                         <tr>
                             <th>Location Name</th>
@@ -44,17 +43,17 @@
                 </table>
             </div>
         </div>
-
+    
         <!-- Invite Host Section -->
         <div class="settings-container">
-            <h2>Invite Host</h2>
+            <h2 class="settings-title">Invite Host</h2>
             <div class="host-invite-container">
-                <input type="email" id="host-email" placeholder="Enter host email">
-                <button id="invite-host">Invite Host</button>
+                <input type="email" id="host-email" class="input-field" placeholder="Enter host email">
+                <button id="invite-host" class="btn-invite">Invite Host</button>
                 <p id="host-message" class="host-message"></p>
             </div>
             <div class="table-container">
-                <table id="hosts-table" class="locations-table">
+                <table id="hosts-table" class="styled-table">
                     <thead>
                         <tr>
                             <th>Email</th>

@@ -1,13 +1,24 @@
 /* styles.css */
+
+/* Homepage Styling */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to bottom, #0B0D33, #000000);
     color: white;
+    display: block; /* Change from flex to block layout */
+    height: auto; /* Remove 100vh to allow natural flow */
+}
+
+/* Center content on specific pages */
+.center-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    justify-content: center; /* Vertically center */
+    align-items: center; /* Horizontally center */
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center-align text */
+    overflow: hidden; /* Prevent scrolling */
 }
 
 .container {
@@ -45,7 +56,7 @@ body {
 .title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px;
-    margin: 0 0 40px;
+    margin: 0 0 30px;
     text-align: center;
 }
 
@@ -72,6 +83,30 @@ body {
     color: gray;
 }
 
+.enter-button {
+    width: 75%; /* Match the width of the input field */
+    height: 50px; /* Same height as the input for consistency */
+    background-color: #00B67A; /* A vibrant green that complements the dark background */
+    color: white; /* White text for high contrast */
+    font-size: 18px; /* Legible text size */
+    font-weight: bold; /* Emphasize the text */
+    border: none; /* Remove default borders */
+    border-radius: 8px; /* Smooth edges to match the input */
+    margin-top: 20px; /* Add spacing above the button */
+    cursor: pointer; /* Indicate clickability */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.enter-button:hover {
+    background-color: #00A66F; /* Slightly darker green for hover effect */
+    box-shadow: 0px 4px 10px rgba(0, 182, 122, 0.6); /* Add a glowing effect */
+}
+
+.enter-button:active {
+    transform: scale(0.98); /* Slightly shrink on click */
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.5); /* Reduce shadow */
+}
+
 /* Login Page Styling */
 .login-form {
     display: flex;
@@ -87,7 +122,7 @@ body {
 }
 
 .login-input {
-    width: 80%;
+    width: 300px;
     max-width: 400px;
     padding: 12px;
     font-size: 16px;
@@ -100,7 +135,7 @@ body {
 }
 
 .login-submit {
-    width: 80%; /* Match input width */
+    width: 150px; /* Match input width */
     max-width: 400px;
     padding: 12px;
     font-size: 16px;
@@ -121,62 +156,63 @@ body {
     margin-top: 15px;
 }
 
-/* Admin Header Styles */
-.admin-header {
+/* Header Styles */
+.header {
     display: flex;
     justify-content: space-between; /* Space out the logo and hamburger menu */
-    align-items: center; /* Vertically center the items */
-    background: linear-gradient(to bottom, #0B0D33, #000000); /* Matches dark theme */
+    align-items: center; /* Vertically align all items */
+    background: #000000; /* Set background to solid black */
     color: white;
-    padding: 10px 20px; /* Adjust padding as needed */
-    height: 60px; /* Set consistent height */
+    padding: 0 20px; /* Adjust left and right padding */
+    height: 75px; /* Set consistent height */
     width: 100%; /* Make the header span the full width of the page */
     position: fixed; /* Stick the header to the top */
     top: 0;
     z-index: 1000; /* Keep the header above other elements */
-}
-
-/* Logo Style */
-.admin-logo {
-    max-height: 50px; /* Ensure logo scales properly */
-    width: auto;
-    margin-left: 40px;
-}
-
-/* Validation message Invite Host */
-.host-message {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+    box-sizing: border-box; /* Ensure padding doesn't affect layout */
 }
 
 /* Hamburger Menu Button Style */
 .hamburger-button {
     background: none;
     border: none;
-    font-size: 24px; /* Size of the hamburger icon */
+    font-size: 48px; /* Increased size by 100% */
     color: white;
     cursor: pointer;
     transition: transform 0.2s;
-    margin-right: 40px;
+    height: 60px; /* Match the height of the header */
+    display: flex; /* Use flex for centering */
+    align-items: center; /* Vertically center icon */
+    justify-content: center; /* Horizontally center icon */
+    margin: 0 15px 15px; /* Remove any unexpected margins */
 }
 
 .hamburger-button:hover {
     transform: scale(1.1); /* Subtle hover effect */
 }
 
+/* Logo Style */
+.header-logo {
+    max-height: 90px; /* Ensure logo scales properly */
+    width: auto; /* Maintain aspect ratio */
+    margin-left: 10px; 
+    display: block;
+}
+
 /* Dropdown Menu */
 .menu-dropdown {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background: #0B0D33;
-    border: 1px solid white;
-    border-radius: 8px;
-    padding: 10px 0;
-    width: 150px;
+    position: fixed; /* Change to fixed so it stays in view */
+    top: 60px; /* Adjust from the top of the viewport */
+    right: 20px; /* Keep it aligned to the right */
+    background: #141639; /* Match dark theme */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    border-radius: 12px; /* Smooth rounding */
+    padding: 15px 0; /* Add vertical padding */
+    width: 285px; /* Width remains the same */
     display: flex;
     flex-direction: column;
-    z-index: 1000;
+    z-index: 1000; /* Ensure it appears above other elements */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
 }
 
 .menu-dropdown.hidden {
@@ -190,47 +226,292 @@ body {
 }
 
 .menu-dropdown ul li {
-    padding: 10px 20px;
+    padding: 10px 25px; /* Increase padding for larger clickable area */
     text-align: left;
+    font-size: 18px; /* Larger text */
+    color: rgba(255, 255, 255, 0.9); /* Softer white for text */
+    transition: background 0.3s, color 0.3s; /* Smooth transition */
 }
 
 .menu-dropdown ul li:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 245, 212, 0.2); /* Match hover color with button green */
+    color: #00F5D4; /* Change text color to green on hover */
 }
 
 .menu-dropdown ul li a {
     text-decoration: none;
-    color: white;
+    color: inherit; /* Inherit hover color */
     display: block;
+    font-weight: bold; /* Emphasize text */
 }
 
-/* Table Styles */
+/* Dashboard Styling */
+main {
+    margin: 0 auto; /* Center it horizontally */
+    margin-top: 100px;
+    padding: 20px; /* Add some padding */
+    width: 95%; /* Ensure it spans the full container */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: white;
+}
+
 .table-container {
-    margin: 0 auto; /* Center the table horizontally */
-    width: 90%; /* Take up 90% of the viewport width */
-    overflow-x: auto; /* Add horizontal scrolling for small screens */
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 10px 0; /* Add padding for a cleaner look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ensure it fully fits inside .settings-container */
+    margin: 0 auto; /* Center the table within the container */
+    overflow-x: auto; /* Handle overflow gracefully for small screens */
+    background: rgba(20, 22, 57, 0.9); /* Match container background */
+    border-radius: 12px;
+    padding: 0; /* Remove padding to align with the container */
+    box-sizing: border-box; /* Prevent width issues from padding */
+}
+
+.table-controls {
+    display: flex;
+    justify-content: space-between; /* Spread elements across */
+    align-items: center;
+    margin-bottom: 20px; /* Add space below */
+    width: 100%; /* Match the width of the table */
+}
+
+.toggle-label {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between checkbox and text */
+    color: rgba(255, 255, 255, 0.8); /* Softer white */
+}
+
+.btn-create-game {
+    background-color: #00F5D4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-create-game:hover {
+    background-color: #00D9C1;
+    box-shadow: 0px 4px 10px rgba(0, 245, 212, 0.5);
 }
 
 .games-table {
-    width: 100%; /* Ensure the table stretches the full container width */
+    width: 100%;
     border-collapse: collapse;
     color: white;
-    font-size: 1rem;
+    font-size: 16px;
     text-align: left;
 }
 
-.games-table th,
-.games-table td {
-    padding: 15px; /* Add padding for readability */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+/* Center-align specific table columns */
+.games-table th:nth-child(3),
+.games-table td:nth-child(3), /* Room Code */
+.games-table th:nth-child(5),
+.games-table td:nth-child(5), /* Download Game */
+.games-table th:nth-child(6),
+.games-table td:nth-child(6) /* Completed */ {
+    text-align: center;
 }
 
 .games-table th {
-    background-color: rgba(255, 255, 255, 0.15);
-    font-weight: bold;
+    padding: 15px;
+    background: #1F223A; /* Darker header background */
     text-transform: uppercase;
+    font-weight: bold;
+}
+
+.games-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.games-table tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.games-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+/* For Host Dashboard Table */
+.games-table th:nth-child(3), /* Room Code */
+.games-table td:nth-child(3),
+.games-table th:nth-child(4), /* Download Game */
+.games-table td:nth-child(4) {
+    text-align: center;
+}
+
+/* Logout Button Styling */
+.logout-button {
+    background-color: #FF4B4B; /* Vibrant red */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    top: 15px; /* Align with header */
+    right: 30px; /* Align with header */
+}
+
+.logout-button:hover {
+    background-color: #E64545; /* Slightly darker red for hover */
+    box-shadow: 0px 4px 10px rgba(255, 75, 75, 0.5); /* Subtle red glow */
+}
+
+.logout-button:active {
+    transform: scale(0.98); /* Slight shrink effect on click */
+    box-shadow: 0px 2px 5px rgba(255, 75, 75, 0.5); /* Dim shadow */
+}
+
+/*Admin Settings*/
+.settings-container {
+    margin: 30px auto;
+    width: 90%; /* Match width of .table-container */
+    max-width: 800px; /* Keep consistent max-width */
+    text-align: center;
+    background: rgba(20, 22, 57, 0.9); /* Match dark background */
+    border-radius: 12px;
+    padding: 20px; /* Ensure padding is internal */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Add depth */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Scope to Location Table: Remove column */
+.settings-container .styled-table th:nth-child(2),
+.settings-container .styled-table td:nth-child(2) {
+    text-align: center;
+}
+
+/* Scope to Invite Host Table: Status column */
+.settings-container:nth-of-type(2) .styled-table th:nth-child(2),
+.settings-container:nth-of-type(2) .styled-table td:nth-child(2) {
+    text-align: center;
+}
+
+/* Scope to Invite Host Table: Revoke column */
+.settings-container .styled-table th:nth-child(3),
+.settings-container .styled-table td:nth-child(3) {
+    text-align: center;
+}
+
+/* Section Titles */
+.settings-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Input Fields */
+.input-field {
+    width: 70%;
+    max-width: 500px;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    margin-right: 10px;
+    background: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Add Button */
+.btn-add, .btn-invite {
+    background-color: #00F5D4;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-add:hover, .btn-invite:hover {
+    background-color: #00D9C1;
+    box-shadow: 0px 4px 10px rgba(0, 245, 212, 0.5);
+}
+
+.btn-add:active, .btn-invite:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+/* Styled Table */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.styled-table th {
+    padding: 15px;
+    background: #1F223A; /* Darker header background */
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center; /* Center-align headers */
+}
+
+.styled-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.styled-table tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.styled-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+/* Host Message (Error or Success) */
+.host-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #00F5D4; /* Match the theme */
+}
+
+/* Style for "-" buttons */
+.btn-remove {
+    display: inline-flex; /* Ensure it behaves like a button */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 10px 15px; /* Adjust padding */
+    background-color: #FF4B4B; /* red button */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 50%; /* Circular button */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-remove:hover {
+    background-color: #E64545;
+    box-shadow: 0px 4px 10px rgba(255, 75, 75, 0.5);
+}
+
+.btn-remove:active {
+    transform: scale(0.98); /* Subtle shrink on click */
+    box-shadow: none;
 }
