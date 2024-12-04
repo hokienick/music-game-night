@@ -1,6 +1,6 @@
 /* styles.css */
 
-/* Homepage Styling */
+/* Core Styling */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -15,7 +15,6 @@ body {
     overflow-x: hidden; /* New: Prevents horizontal scrolling due to background or content overflow */
 }
 
-/* Center content on specific pages */
 .center-page {
     display: flex;
     flex-direction: column;
@@ -177,7 +176,6 @@ body {
     box-sizing: border-box; /* Ensure padding doesn't affect layout */
 }
 
-/* Hamburger Menu Button Style */
 .hamburger-button {
     background: none;
     border: none;
@@ -196,7 +194,6 @@ body {
     transform: scale(1.1); /* Subtle hover effect */
 }
 
-/* Logo Style */
 .header-logo {
     max-height: 90px; /* Ensure logo scales properly */
     width: auto; /* Maintain aspect ratio */
@@ -204,7 +201,6 @@ body {
     display: block;
 }
 
-/* Dropdown Menu */
 .menu-dropdown {
     position: fixed; /* Change to fixed so it stays in view */
     top: 60px; /* Adjust from the top of the viewport */
@@ -355,6 +351,30 @@ h1 {
     text-align: center;
 }
 
+.btn-remove-dashboard {
+    background-color: #FF4B4B; /* Vibrant red */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px; /* Slight rounding for consistency */
+    padding: 10px 20px; /* Adjust padding for better proportions */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    text-align: center; /* Center text inside the button */
+    width: auto; /* Ensure it adjusts based on content */
+}
+
+.btn-remove-dashboard:hover {
+    background-color: #E64545; /* Slightly darker red for hover */
+    box-shadow: 0px 4px 10px rgba(255, 75, 75, 0.5); /* Subtle shadow effect */
+}
+
+.btn-remove-dashboard:active {
+    transform: scale(0.98); /* Slight shrink effect on click */
+    box-shadow: 0px 2px 5px rgba(255, 75, 75, 0.5); /* Dim shadow */
+}
+
 .launch-button {
     background-color: #00F5D4; /* Match theme color */
     color: white;
@@ -378,7 +398,6 @@ h1 {
     box-shadow: none;
 }
 
-/* Logout Button Styling */
 .logout-button {
     background-color: #FF4B4B; /* Vibrant red */
     color: white;
@@ -428,13 +447,11 @@ h1 {
     text-align: center;
 }
 
-/* Scope to Invite Host Table: Revoke column */
 .settings-container .styled-table th:nth-child(3),
 .settings-container .styled-table td:nth-child(3) {
     text-align: center;
 }
 
-/* Section Titles */
 .settings-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
@@ -442,7 +459,6 @@ h1 {
     color: white;
 }
 
-/* Input Fields */
 .input-field {
     width: 70%;
     max-width: 500px;
@@ -458,7 +474,6 @@ h1 {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Add Button */
 .btn-add, .btn-invite {
     background-color: #00F5D4;
     color: white;

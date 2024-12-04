@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -99,42 +99,45 @@ document.addEventListener("DOMContentLoaded", () => {
     function addGameToTable(game, gameId) {
         const row = document.createElement("tr");
 
-        // Build the row content
         row.innerHTML = `
             <td>${game.date}</td>
             <td>${game.location}</td>
             <td>${game.roomCode}</td>
             <td>${game.host}</td>
             <td><a href="${game.musicFileURL}" download target="_blank">📥</a></td>
-            <td><input type="checkbox" class="completed-checkbox" ${game.completed ? "checked" : ""}></td>
+            <td><input type="checkbox" class="completed-checkbox"></td>
+            <td><button class="btn-remove-dashboard" data-id="${gameId}">Remove</button></td>
         `;
 
-        // Add Launch button if not completed
-        const launchCell = document.createElement("td");
-        if (!game.completed) {
-            const launchButton = document.createElement("button");
-            launchButton.textContent = "Launch";
-            launchButton.classList.add("launch-button");
-            
-            // Redirect to Command Center on click
-            launchButton.addEventListener("click", () => {
-                window.location.href = `/command-center.html?roomCode=${game.roomCode}`;
-            });
-
-            launchCell.appendChild(launchButton);
-        }
-        row.appendChild(launchCell);
-
-        // Event listener for "Completed" checkbox
+        // Add event listener for the "Completed" checkbox
         const completedCheckbox = row.querySelector(".completed-checkbox");
         completedCheckbox.addEventListener("change", () => {
             if (toggleCompleted.checked && completedCheckbox.checked) {
-                row.style.display = "none"; // Hide row if "Hide Completed" is enabled
+                row.style.display = "none"; // Hide row if "Hide Completed" is checked
             } else {
                 row.style.display = ""; // Show row otherwise
             }
         });
 
-    tableBody.appendChild(row);
-}
+        // Add event listener for the "Remove" button
+        const removeButton = row.querySelector(".btn-remove-dashboard");
+        removeButton.addEventListener("click", async () => {
+            const gameId = removeButton.dataset.id;
+            const confirmDelete = confirm("Are you sure you want to delete this game?");
+            if (confirmDelete) {
+                try {
+                    // Remove from Firestore
+                    await deleteDoc(doc(db, "games", gameId));
+                    // Remove from table
+                    row.remove();
+                    console.log(`Game with ID ${gameId} removed successfully.`);
+                } catch (error) {
+                    console.error("Error removing game:", error);
+                    alert("Failed to remove the game. Please try again.");
+                }
+            }
+        });
+
+        tableBody.appendChild(row);
+    }
 });
