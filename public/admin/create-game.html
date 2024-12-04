@@ -7,69 +7,87 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <header class="admin-header">
-        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="admin-logo">
-        <button id="hamburger-menu" class="hamburger-button">☰</button>
+    <header class="header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="header-logo">
+        <button id="hamburger-menu" class="hamburger-button">
+            ☰
+        </button>
     </header>
 
     <nav id="menu-dropdown" class="menu-dropdown hidden">
         <ul>
-            <li><a href="/admin/admin-settings.html">Settings</a></li>
-            <li><a href="/admin/invite-host.html">Invite Host</a></li>
             <li><a href="/admin/dashboard.html">Dashboard</a></li>
             <li><a href="#" id="logout-button">Logout</a></li>
         </ul>
     </nav>
 
     <main>
-        <h1>Create Game</h1>
+        <h1 class="page-title">Create Game</h1>
 
-        <!-- Section 1: Date of Event -->
-        <section>
-            <h2>Date of Event</h2>
-            <p id="selected-date">Selected Date: None</p>
-            <input type="date" id="event-date" />
-        </section>
+        <!-- Form Container -->
+        <div class="form-container">
+            <!-- Section 1: Date of Event -->
+            <section class="form-section">
+                <h2 class="form-section-title">Date of Event</h2>
+                <p id="selected-date">Selected Date: None</p>
+                <input type="date" id="event-date" class="input-field" />
+            </section>
 
-        <!-- Section 2: Location -->
-        <section>
-            <h2>Location</h2>
-            <select id="location-dropdown">
-                <option value="" disabled selected>Select a location</option>
-            </select>
-        </section>
+            <!-- Section 2: Location -->
+            <section class="form-section">
+                <h2 class="form-section-title">Location</h2>
+                <select id="location-dropdown" class="dropdown">
+                    <option value="" disabled selected>Select a location</option>
+                </select>
+            </section>
 
-        <!-- Section 3: Upload Music Files -->
-        <section>
-            <h2>Upload Music Files</h2>
-            <p>Paste the Google Drive URL of your ZIP file:</p>
-            <input type="url" id="music-url" placeholder="Paste Google Drive link here" />
-            <p id="upload-error-message" class="error-message" style="display: none;">Invalid Google Drive URL. Please try again.</p>
-        </section>
+            <!-- Section 3: Upload Music Files -->
+            <section class="form-section">
+                <h2 class="form-section-title">Upload Music Files</h2>
+                <p>Paste the Google Drive URL of your ZIP file:</p>
+                <input type="url" id="music-url" class="input-field" placeholder="Paste Google Drive link here" />
+                <p id="upload-error-message" class="error-message" style="display: none;">Invalid Google Drive URL. Please try again.</p>
+            </section>
 
-        <!-- Section 4: Assign Host -->
-        <section>
-            <h2>Assign Host</h2>
-            <select id="host-dropdown">
-                <option value="" disabled selected>Select a host</option>
-            </select>
-        </section>
+            <!-- Section 4: Assign Host -->
+            <section class="form-section">
+                <h2 class="form-section-title">Assign Host</h2>
+                <select id="host-dropdown" class="dropdown">
+                    <option value="" disabled selected>Select a host</option>
+                </select>
+            </section>
 
-        <!-- Section 5: Final Round Words -->
-        <section>
-            <h2>Final Round Words</h2>
-            <div id="final-round">
-                Q1: <input type="number" id="q1" /> 
-                Q2: <input type="number" id="q2" /> 
-                Q3: <input type="number" id="q3" /> 
-                Q4: <input type="number" id="q4" /> 
-                Q5: <input type="number" id="q5" />
-            </div>
-        </section>
+            <!-- Section 5: Final Round Words -->
+            <section class="form-section">
+                <h2 class="form-section-title">Final Round Words</h2>
+                <div id="final-round" class="final-round-inputs">
+                    <div class="final-round-input">
+                        <label for="q1">Q1:</label>
+                        <input type="number" id="q1" class="input-field" />
+                    </div>
+                    <div class="final-round-input">
+                        <label for="q2">Q2:</label>
+                        <input type="number" id="q2" class="input-field" />
+                    </div>
+                    <div class="final-round-input">
+                        <label for="q3">Q3:</label>
+                        <input type="number" id="q3" class="input-field" />
+                    </div>
+                    <div class="final-round-input">
+                        <label for="q4">Q4:</label>
+                        <input type="number" id="q4" class="input-field" />
+                    </div>
+                    <div class="final-round-input">
+                        <label for="q5">Q5:</label>
+                        <input type="number" id="q5" class="input-field" />
+                    </div>
+                </div>
+            </section>
 
-        <!-- Submit Button -->
-        <button id="submit-game">Submit</button>
-        <p id="error-message" class="error-message" style="display: none;">An error occurred while saving the game.</p>
+            <!-- Submit Button -->
+            <button id="submit-game" class="btn-submit">Submit</button>
+            <p id="error-message" class="error-message" style="display: none;">An error occurred while saving the game.</p>
+        </div>
     </main>
 
     <script src="/admin/create-game.js" type="module"></script>

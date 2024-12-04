@@ -5,9 +5,14 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to bottom, #0B0D33, #000000);
+    background-repeat: no-repeat; /* Already present */
+    background-size: cover; /* Already present */
+    background-attachment: fixed; /* New: Keeps background static during scrolling */
     color: white;
-    display: block; /* Change from flex to block layout */
-    height: auto; /* Remove 100vh to allow natural flow */
+    display: block; /* Unchanged */
+    height: auto; /* Unchanged */
+    width: 100%; /* Added: Ensures the full-width coverage */
+    overflow-x: hidden; /* New: Prevents horizontal scrolling due to background or content overflow */
 }
 
 /* Center content on specific pages */
@@ -350,6 +355,29 @@ h1 {
     text-align: center;
 }
 
+.launch-button {
+    background-color: #00F5D4; /* Match theme color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.launch-button:hover {
+    background-color: #00D9C1; /* Slightly darker on hover */
+    box-shadow: 0px 4px 10px rgba(0, 245, 212, 0.5);
+}
+
+.launch-button:disabled {
+    background-color: #444; /* Grey out for disabled state */
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
 /* Logout Button Styling */
 .logout-button {
     background-color: #FF4B4B; /* Vibrant red */
@@ -514,4 +542,79 @@ h1 {
 .btn-remove:active {
     transform: scale(0.98); /* Subtle shrink on click */
     box-shadow: none;
+}
+
+/* Create Game Styling */
+.form-section {
+    margin-bottom: 30px; /* Add space between sections */
+}
+
+.dropdown {
+    width: 100%; /* Full width */
+    max-width: 400px; /* Cap at 400px */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #FFFFFF; /* Match the white aesthetic */
+    background-color: rgba(20, 22, 57, 0.9); /* Dark background to match theme */
+    color: white;
+    outline: none;
+    appearance: none; /* Remove default dropdown arrow styling */
+    background-image: url('/path-to-your-dropdown-icon.svg'); /* Optional: Add a custom dropdown arrow */
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+.dropdown:focus {
+    border-color: #00F5D4; /* Add a green border on focus */
+    outline: none;
+}
+
+.btn-submit {
+    width: 100%; /* Full width for consistency */
+    max-width: 400px; /* Cap width */
+    height: 50px; /* Consistent height with other buttons */
+    background-color: #00B67A; /* Green button */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; /* Smooth corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    margin: 0 auto; /* Center the button */
+}
+.btn-submit:hover {
+    background-color: #00A66F; /* Slightly darker green for hover */
+    box-shadow: 0px 4px 10px rgba(0, 182, 122, 0.6); /* Add a glowing effect */
+}
+
+.final-round-input input[type="number"] {
+    width: 60px; /* Adjust width to fit 3 numbers */
+    height: 40px; /* Consistent height with other inputs */
+    padding: 5px; /* Small padding inside the input */
+    font-size: 16px; /* Font size for readability */
+    border-radius: 8px; /* Smooth corners */
+    border: 1px solid #FFFFFF; /* White border for theme */
+    background-color: rgba(20, 22, 57, 0.9); /* Match dark theme */
+    color: white; /* White text for readability */
+    margin-bottom: 10px; /* Add spacing below each input */
+    text-align: center; /* Center-align the numbers inside */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+.final-round-input input[type="number"]:focus {
+    border-color: #00F5D4; /* Green border on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Remove spinners for number inputs in all browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hides the spinner in Chrome, Safari, and Edge */
+    margin: 0; /* Removes margin */
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Hides the spinner in Firefox */
 }

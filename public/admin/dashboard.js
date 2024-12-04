@@ -99,25 +99,42 @@ document.addEventListener("DOMContentLoaded", () => {
     function addGameToTable(game, gameId) {
         const row = document.createElement("tr");
 
+        // Build the row content
         row.innerHTML = `
             <td>${game.date}</td>
             <td>${game.location}</td>
             <td>${game.roomCode}</td>
             <td>${game.host}</td>
             <td><a href="${game.musicFileURL}" download target="_blank">📥</a></td>
-            <td><input type="checkbox" class="completed-checkbox"></td>
+            <td><input type="checkbox" class="completed-checkbox" ${game.completed ? "checked" : ""}></td>
         `;
 
-        // Add event listener for the "Completed" checkbox
+        // Add Launch button if not completed
+        const launchCell = document.createElement("td");
+        if (!game.completed) {
+            const launchButton = document.createElement("button");
+            launchButton.textContent = "Launch";
+            launchButton.classList.add("launch-button");
+            
+            // Redirect to Command Center on click
+            launchButton.addEventListener("click", () => {
+                window.location.href = `/command-center.html?roomCode=${game.roomCode}`;
+            });
+
+            launchCell.appendChild(launchButton);
+        }
+        row.appendChild(launchCell);
+
+        // Event listener for "Completed" checkbox
         const completedCheckbox = row.querySelector(".completed-checkbox");
         completedCheckbox.addEventListener("change", () => {
             if (toggleCompleted.checked && completedCheckbox.checked) {
-                row.style.display = "none"; // Hide row if "Hide Completed" is checked
+                row.style.display = "none"; // Hide row if "Hide Completed" is enabled
             } else {
                 row.style.display = ""; // Show row otherwise
             }
         });
 
-        tableBody.appendChild(row);
-    }
+    tableBody.appendChild(row);
+}
 });

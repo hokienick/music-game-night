@@ -2,6 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
+// Menu Dropdown Toggle
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const menuDropdown = document.getElementById('menu-dropdown');
+
+hamburgerMenu.addEventListener('click', () => {
+    menuDropdown.classList.toggle('hidden');
+});
+
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA9slaVzWlvolQ4eJVRiTrVpF9bF6XuRjI",

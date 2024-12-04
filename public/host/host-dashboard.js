@@ -41,13 +41,30 @@ async function loadGames(hostEmail) {
                 <td>${game.roomCode}</td>
                 <td><a href="${game.musicFileURL}" target="_blank">📥</a></td>
             `;
+
+            // Add Launch button if not completed
+            const launchCell = document.createElement("td");
+            if (!game.completed) {
+                const launchButton = document.createElement("button");
+                launchButton.textContent = "Launch";
+                launchButton.classList.add("launch-button");
+                
+                // Redirect to Command Center on click
+                launchButton.addEventListener("click", () => {
+                    window.location.href = `/command-center.html?roomCode=${game.roomCode}`;
+                });
+
+                launchCell.appendChild(launchButton);
+            }
+            row.appendChild(launchCell);
+
             gamesTableBody.appendChild(row);
         });
 
         if (querySnapshot.empty) {
             // Display a message if no games are found
             const noGamesRow = document.createElement("tr");
-            noGamesRow.innerHTML = `<td colspan="4">No games assigned to you.</td>`;
+            noGamesRow.innerHTML = `<td colspan="5">No games assigned to you.</td>`;
             gamesTableBody.appendChild(noGamesRow);
         }
     } catch (error) {
