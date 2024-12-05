@@ -3,11 +3,11 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
 // Menu Dropdown Toggle
-const hamburgerMenu = document.getElementById('hamburger-menu');
-const menuDropdown = document.getElementById('menu-dropdown');
+const hamburgerMenu = document.getElementById("hamburger-menu");
+const menuDropdown = document.getElementById("menu-dropdown");
 
-hamburgerMenu.addEventListener('click', () => {
-    menuDropdown.classList.toggle('hidden');
+hamburgerMenu.addEventListener("click", () => {
+    menuDropdown.classList.toggle("hidden");
 });
 
 // Firebase configuration
@@ -63,15 +63,14 @@ function generateRoomCode() {
 }
 
 // Populate dropdowns
-// Populate dropdowns
 async function loadDropdowns() {
     try {
         // Populate Locations
         const locationsSnapshot = await getDocs(collection(db, "locations"));
         locationsSnapshot.forEach((doc) => {
             const option = document.createElement("option");
-            option.value = doc.id; // Save Firestore doc ID as value
-            option.textContent = doc.data().name; // Display location name
+            option.value = doc.id;
+            option.textContent = doc.data().name;
             locationDropdown.appendChild(option);
         });
 
@@ -79,8 +78,8 @@ async function loadDropdowns() {
         const hostsSnapshot = await getDocs(collection(db, "hosts"));
         hostsSnapshot.forEach((doc) => {
             const option = document.createElement("option");
-            option.value = doc.id; // Save Firestore doc ID as value
-            option.textContent = doc.data().email; // Display host email
+            option.value = doc.id;
+            option.textContent = doc.data().email;
             hostDropdown.appendChild(option);
         });
     } catch (error) {
@@ -95,58 +94,109 @@ eventDateInput.addEventListener("change", () => {
     selectedDate.textContent = `Selected Date: ${eventDateInput.value}`;
 });
 
+// Validate inputs
+function validateInputs() {
+    const allInputs = document.querySelectorAll(".input-field");
+    let isValid = true;
+
+    allInputs.forEach((input) => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add("error-border");
+        } else {
+            input.classList.remove("error-border");
+        }
+    });
+
+    return isValid;
+}
+
 // Submit game
 submitButton.addEventListener("click", async () => {
     const date = eventDateInput.value;
-    const locationId = locationDropdown.value; // Get the document ID
-    const locationName = locationDropdown.options[locationDropdown.selectedIndex].textContent; // Get the displayed name
+    const locationId = locationDropdown.value;
+    const locationName = locationDropdown.options[locationDropdown.selectedIndex]?.textContent || "";
     const host = hostDropdown.value;
-    const q1 = document.getElementById("q1").value;
-    const q2 = document.getElementById("q2").value;
-    const q3 = document.getElementById("q3").value;
-    const q4 = document.getElementById("q4").value;
-    const q5 = document.getElementById("q5").value;
-    const musicUrl = musicUrlInput.value.trim(); // Ensure music URL is retrieved correctly
-
-    // Clear previous error messages
-    errorMessage.style.display = "none";
-    uploadErrorMessage.style.display = "none";
+    const musicUrl = musicUrlInput.value.trim();
 
     // Validate fields
-    if (!date || !locationId || !host || !q1 || !q2 || !q3 || !q4 || !q5 || !musicUrl) {
-        errorMessage.textContent = "All fields are required, including the music file URL.";
+    if (!validateInputs() || !date || !locationId || !host || !musicUrl) {
+        errorMessage.textContent = "All fields are required.";
         errorMessage.style.display = "block";
         return;
     }
 
     // Validate and convert Google Drive URL
     if (!validateGoogleDriveUrl(musicUrl)) {
-        uploadErrorMessage.textContent = "Invalid Google Drive URL. Please ensure it matches the format.";
+        uploadErrorMessage.textContent = "Invalid Google Drive URL. Please try again.";
         uploadErrorMessage.style.display = "block";
         return;
     }
 
     const musicFileURL = convertToDownloadUrl(musicUrl);
-    if (!musicFileURL) {
-        uploadErrorMessage.textContent = "Failed to generate a valid download link. Please try again.";
-        uploadErrorMessage.style.display = "block";
-        return;
+
+    // Gather rounds data
+    const rounds = {};
+    let questionNumber = 1; // Initialize sequential numbering for questions
+
+    for (let round = 1; round <= 5; round++) {
+        // Initialize the round object
+        rounds[`round${round}`] = {};
+
+        for (let question = 1; question <= 5; question++) {
+            if (round === 1) {
+                // Round 1: Only one text box per question
+                const questionId = `round${round}-q${question}`;
+                const questionInput = document.getElementById(questionId);
+
+                if (questionInput) {
+                    rounds[`round${round}`][`q${question}`] = questionInput.value.trim();
+                } else {
+                    console.warn(`Question Input with ID ${questionId} not found!`);
+                }
+            } else {
+                // Rounds 2–5: Two text boxes per question (Artist and Title)
+                const artistId = `round${round}-q${questionNumber}`;
+                const titleId = `round${round}-q${questionNumber}-title`;
+                const artistInput = document.getElementById(artistId);
+                const titleInput = document.getElementById(titleId);
+
+                if (artistInput && titleInput) {
+                    // Save artist and title with sequential numbering
+                    rounds[`round${round}`][`a${questionNumber}`] = artistInput.value.trim();
+                    rounds[`round${round}`][`t${questionNumber}`] = titleInput.value.trim();
+                } else {
+                    console.warn(`Inputs for Artist (${artistId}) or Title (${titleId}) not found!`);
+                }
+            }
+
+            questionNumber++; // Increment the sequential question number
+        }
     }
 
-    // Generate a unique 4-character room code
-    const roomCode = generateRoomCode();
+    // Gather final question data
+    const finalQuestion = {};
+    for (let question = 1; question <= 4; question++) {
+        const lyricInput = document.getElementById(`final-q${question}-lyric`);
+        const wordsInput = document.getElementById(`final-q${question}-words`);
+        finalQuestion[`q${question}`] = {
+            lyric: lyricInput?.value.trim() || "",
+            wordCount: wordsInput?.value.trim() || "",
+        };
+    }
 
     try {
         // Save game data in Firestore
         await addDoc(collection(db, "games"), {
             date,
-            location: locationName, // Save the location name for display
-            locationId, // Optionally save the Firestore document ID
+            location: locationName,
+            locationId,
             host,
-            roomCode, // Save the room code
-            finalRound: { q1, q2, q3, q4, q5 },
-            musicFileURL, // Save the converted download link
-            completed: false, // Ensure the completed field defaults to false
+            roomCode: generateRoomCode(),
+            musicFileURL,
+            rounds,
+            finalQuestion,
+            completed: false,
         });
 
         // Redirect on success

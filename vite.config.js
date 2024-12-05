@@ -14,10 +14,11 @@ export default defineConfig({
                 adminSettings: '/admin/admin-settings.html', // Admin Settings page entry point
                 inviteHost: '/admin/invite-host.html',
                 hostDashboard: '/host/host-dashboard.html',
+                commandCenter: '/pages/command-center.html',
             },
         },
     },
     server: {
-        open: true, // Automatically opens the browser on `npx vite`
+        open: false, // Automatically opens the browser on `npx vite`
     },
 });

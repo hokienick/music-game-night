@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Center</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="header">
+        <img src="/djhokienick-UseOnDarkBG.png" alt="DJ HokieNick Logo" class="header-logo">
+        <button id="show-leaderboard-btn" class="show-leaderboard-btn">Show Leaderboard</button>
+        <button id="hamburger-menu" class="hamburger-button">☰</button>
+    </header>
+    <main class="command-center">
+        <!-- Round Sections -->
+        <div class="round-section">
+            <h2 class="round-title">
+                Round 1 - First Word
+                <button class="show-round-btn">Show</button>
+            </h2>
+            <div class="questions">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+        
+        <div class="round-section">
+            <h2 class="round-title">
+                Round 2 - Acapella
+                <button class="show-round-btn">Show</button>
+            </h2>
+            <div class="questions">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+        
+        <div class="round-section">
+            <h2 class="round-title">
+                Round 3 - Heardle
+                <button class="show-round-btn">Show</button>
+            </h2>
+            <div class="questions">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+        
+        <div class="round-section">
+            <h2 class="round-title">
+                Round 4 - Devil's Playground
+                <button class="show-round-btn">Show</button>
+            </h2>
+            <div class="questions">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+        
+        <div class="round-section">
+            <h2 class="round-title">
+                Round 5 - Beat The Beat
+                <button class="show-round-btn">Show</button>
+            </h2>
+            <div class="questions">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <div class="round-section">
+            <h2 class="round-title">
+                Final Question
+                <div class="button-container">
+                    <button class="wager-btn">Open Wagering</button>
+                    <button class="show-round-btn">Show</button>
+                </div>
+            </h2>
+            <div class="questions">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="leaderboard">
+            <h2 class="leaderboard-title">Leaderboard</h2>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>Score</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Team 1</td>
+                        <td>42 pts</td>
+                        <td><button class="activate-btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td>Team 2</td>
+                        <td>36 pts</td>
+                        <td><button class="activate-btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td>Team 3</td>
+                        <td>32 pts</td>
+                        <td><button class="activate-btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td>Team 4</td>
+                        <td>27 pts</td>
+                        <td><button class="activate-btn">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="/pages/command-center.js" defer></script>
+</body>
+</html>

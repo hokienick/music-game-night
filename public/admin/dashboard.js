@@ -88,7 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const gamesSnapshot = await getDocs(collection(db, "games"));
             gamesSnapshot.forEach((doc) => {
                 const game = doc.data();
-                addGameToTable(game, doc.id);
+                const roomCode = game.roomCode; // Get the roomCode
+                console.log("Fetched Room Code:", roomCode);
+                addGameToTable(game, roomCode);
             });
         } catch (error) {
             console.error("Error loading games:", error);
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Add a game to the table
-    function addGameToTable(game, gameId) {
+    function addGameToTable(game, roomCode) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -106,7 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${game.host}</td>
             <td><a href="${game.musicFileURL}" download target="_blank">📥</a></td>
             <td><input type="checkbox" class="completed-checkbox"></td>
-            <td><button class="btn-remove-dashboard" data-id="${gameId}">Remove</button></td>
+            <td>
+                ${
+                    game.completed
+                        ? ""
+                        : `<button class="launch-button" data-id="${roomCode}">Launch</button>`
+                }
+            </td>
+            <td><button class="btn-remove-dashboard" data-id="${roomCode}">Remove</button></td>
         `;
 
         // Add event listener for the "Completed" checkbox
@@ -121,22 +130,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add event listener for the "Remove" button
         const removeButton = row.querySelector(".btn-remove-dashboard");
+        
         removeButton.addEventListener("click", async () => {
-            const gameId = removeButton.dataset.id;
+            const roomCode = removeButton.dataset.id;
             const confirmDelete = confirm("Are you sure you want to delete this game?");
             if (confirmDelete) {
                 try {
-                    // Remove from Firestore
-                    await deleteDoc(doc(db, "games", gameId));
-                    // Remove from table
-                    row.remove();
-                    console.log(`Game with ID ${gameId} removed successfully.`);
+                    // Fetch the document ID (gameId) using roomCode
+                    const gamesQuery = collection(db, "games");
+                    const querySnapshot = await getDocs(gamesQuery);
+                    let gameIdToDelete = null;
+
+                    querySnapshot.forEach((doc) => {
+                        if (doc.data().roomCode === roomCode) {
+                            gameIdToDelete = doc.id;
+                        }
+                    });
+
+                    if (gameIdToDelete) {
+                        // Remove from Firestore using gameId
+                        await deleteDoc(doc(db, "games", gameIdToDelete));
+                        // Remove from table
+                        row.remove();
+                        console.log(`Game with ID ${gameIdToDelete} (Room Code: ${roomCode}) removed successfully.`);
+                    } else {
+                        console.error("Document with specified roomCode not found");
+                        alert("Failed to remove the game: Room Code not found.");
+                    }
                 } catch (error) {
                     console.error("Error removing game:", error);
                     alert("Failed to remove the game. Please try again.");
                 }
             }
         });
+
+        // Add event listener for the "Launch" button
+        const launchButton = row.querySelector(".launch-button");
+        if (launchButton) {
+            launchButton.addEventListener("click", () => {
+                // Redirect to Command Center with roomCode in query string
+                window.location.href = `/pages/command-center.html?roomCode=${roomCode}`;
+            });
+        }
 
         tableBody.appendChild(row);
     }

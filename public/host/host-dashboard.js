@@ -51,7 +51,7 @@ async function loadGames(hostEmail) {
                 
                 // Redirect to Command Center on click
                 launchButton.addEventListener("click", () => {
-                    window.location.href = `/command-center.html?roomCode=${game.roomCode}`;
+                    window.location.href = `/pages/command-center.html?roomCode=${game.roomCode}`;
                 });
 
                 launchCell.appendChild(launchButton);

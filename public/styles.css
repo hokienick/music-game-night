@@ -380,11 +380,13 @@ h1 {
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 14px;
-    padding: 8px 16px;
+    font-size: 16px;
+    padding: 10px 20px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    width: auto;
 }
 
 .launch-button:hover {
@@ -632,4 +634,294 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield; /* Hides the spinner in Firefox */
+}
+
+.round-container .question-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Add space between questions */
+}
+
+.round-container .question-container label {
+    width: 100px; /* Ensure consistent label width */
+    text-align: left; /* Align labels to the left */
+}
+
+.round-container .question-container input {
+    flex-grow: 1;
+    margin-right: 10px; /* Add space between input fields */
+    height: 40px; /* Ensure input fields are consistent in size */
+}
+
+.round-container .question-container input:last-child {
+    margin-right: 0; /* Remove margin for the last input box */
+}
+
+.round-container {
+    margin-bottom: 30px; /* Add space between rounds */
+}
+
+.final-question-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Add space between questions */
+}
+
+.final-question-container label {
+    width: 100px; /* Ensure consistent label width */
+    text-align: left; /* Align labels to the left */
+}
+
+.final-question-container .lyric-input {
+    flex-grow: 1; /* Make the lyric textbox take the remaining space */
+    margin-right: 10px; /* Add space between inputs */
+    height: 40px; /* Ensure consistent height */
+}
+
+.final-question-container .word-count-input {
+    width: 80px; /* Small width for the word count field */
+    text-align: center; /* Center the placeholder text */
+    height: 40px; /* Ensure consistent height */
+}
+
+/* Update Command Center Styling */
+.command-center {
+    margin: 120px auto 50px; /* Add more top margin for better spacing */
+    width: 95%;
+    max-width: 1100px; /* Match the prototype width */
+    box-sizing: border-box;
+}
+
+.command-center h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; /* Slightly larger for emphasis */
+    margin-bottom: 30px; /* Increase space below the header */
+    color: white;
+    text-align: center;
+}
+
+/* Round Section Styling */
+.command-center .round-section {
+    background: rgba(255, 255, 255, 0.1); /* Slightly darker shade */
+    padding: 25px; /* Add more padding for cleaner spacing */
+    border-radius: 12px; /* Increase rounding for a smoother look */
+    margin-bottom: 40px; /* Increase space between sections */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+}
+
+.command-center .round-section h2 {
+    font-size: 28px; /* Match the prototype size */
+    margin-bottom: 20px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.9); /* Softer white for titles */
+}
+
+/* Question Row Styling */
+.command-center .question-row {
+    display: flex;
+    justify-content: space-between; /* Spread elements horizontally */
+    align-items: center;
+    padding: 12px 0; /* Add vertical spacing between rows */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle separation */
+}
+
+.command-center .question-row:last-child {
+    border-bottom: none; /* Remove border for the last question */
+}
+
+.command-center .question-text {
+    font-size: 18px; /* Larger text for readability */
+    color: rgba(255, 255, 255, 0.9); /* Softer white for text */
+    flex-grow: 1; /* Allow the text to expand */
+    text-align: left;
+}
+
+.command-center .question-buttons {
+    display: flex;
+    gap: 10px; /* Add consistent spacing between buttons */
+}
+
+/* Button Styling */
+.command-center .show-btn, .command-center .activate-btn {
+    background-color: #00B67A; /* Match the theme's green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px; /* Adjust padding for better proportions */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.command-center .show-btn:hover, .command-center .activate-btn:hover {
+    background-color: #009B64; /* Darker green for hover effect */
+    box-shadow: 0px 4px 10px rgba(0, 182, 122, 0.6); /* Add glowing effect */
+}
+
+.command-center .show-btn:active, .command-center .activate-btn:active {
+    transform: scale(0.96); /* Subtle shrink effect on click */
+    box-shadow: none;
+}
+
+/* Final Question Styling */
+.command-center .final-question-container {
+    background: rgba(255, 255, 255, 0.05); /* Add a distinct background */
+    padding: 20px;
+    border-radius: 12px; /* Match rounding */
+    margin-top: 30px; /* Add spacing above final questions */
+}
+
+.command-center .final-question-container .question-text {
+    font-size: 18px; /* Match question row styling */
+    color: rgba(255, 255, 255, 0.9);
+    flex-grow: 1;
+}
+
+/* Leaderboard Styling */
+.command-center .leaderboard {
+    margin-top: 50px; /* Space above leaderboard */
+    padding: 25px; /* Add padding for cleaner layout */
+    background: rgba(255, 255, 255, 0.1); /* Slightly darker for emphasis */
+    border-radius: 12px; /* Consistent rounding */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4); /* Add depth */
+}
+
+.command-center .leaderboard-title {
+    font-size: 28px; /* Match section headers */
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+}
+
+.command-center .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.command-center .leaderboard-table th, .command-center .leaderboard-table td {
+    padding: 15px; /* Add spacing for readability */
+    font-size: 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle row separation */
+}
+
+.command-center .leaderboard-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle hover effect */
+}
+
+.show-round-btn {
+    background-color: #666666; /* Default grey */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 15px; /* Add spacing from the round title */
+}
+
+.show-round-btn:hover {
+    background-color: #555555; /* Slightly darker grey */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle hover effect */
+}
+
+/* Align "Show" button with the title */
+.round-title {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space the button and title */
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+/* Styling for "Show Leaderboard" button */
+.show-leaderboard-btn {
+    background-color: #555; /* Default grey color */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded edges */
+    padding: 10px 20px; /* Comfortable padding */
+    font-size: 16px; /* Visible font size */
+    font-weight: bold; /* Emphasize button text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    position: absolute; /* Position within header */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to truly center */
+    z-index: 1000; /* Ensure visibility */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Hover states */
+.show-leaderboard-btn:hover {
+    background-color: #666; /* Slightly lighter grey on hover */
+}
+
+/* Active (red) state */
+.show-leaderboard-btn.active {
+    background-color: #FF4B4B; /* Red when active */
+    box-shadow: 0px 4px 10px rgba(255, 75, 75, 0.5); /* Red glow */
+}
+
+.show-leaderboard-btn.active:hover {
+    background-color: #E64545; /* Slightly darker red on hover */
+}
+
+/* Final Question Button Container */
+.final-question-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* Add spacing below the title */
+}
+
+.final-question-buttons {
+    display: flex;
+    gap: 10px; /* Add spacing between buttons */
+}
+
+/* Show Button (Final Question Specific) */
+.final-show-btn {
+    background-color: #6c757d; /* Grey color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.final-show-btn:hover {
+    background-color: #5a6268; /* Slightly darker grey on hover */
+    box-shadow: 0px 4px 10px rgba(108, 117, 125, 0.5);
+}
+
+/* Open Wagering Button (Final Question Specific) */
+.wager-btn {
+    background-color: #6c757d; /* Grey color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wager-btn:hover {
+    background-color: #5a6268; /* Slightly darker grey on hover */
+    box-shadow: 0px 4px 10px rgba(108, 117, 125, 0.5);
+}
+
+.wager-btn.active {
+    background-color: #FF4B4B; /* Red for active */
+    box-shadow: none;
+}
+
+.wager-btn.active:hover {
+    background-color: #E64545; /* Slightly darker red for hover */
 }
